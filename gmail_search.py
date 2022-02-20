@@ -31,12 +31,14 @@ def get_message_ids(imap4ssl, search_str):
 
 def get_messages(imap4ssl, message_ids):
     messages = []
+    print("Fetching messages")
     count = 1
     for message_id in message_ids:
         message = imap4ssl.fetch(message_id, "(RFC822)")[1][0][1].decode("utf-8")
         messages.append(message)
         print("Progress: {percentage:.2f}%".format(percentage=(count / len(message_ids) * 100)))
         count += 1
+    print("Finished fetching messages")
     return messages
 
 def clean(messages):
