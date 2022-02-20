@@ -1,6 +1,6 @@
 # Gmail Search
 
-Search from and retrieve Gmail messages.
+Search for and retrieve Gmail messages.
 
 ## Installation
 
