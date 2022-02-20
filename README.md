@@ -4,7 +4,7 @@ Search for and retrieve Gmail messages.
 
 ## Installation
 
-Download the file `gmail_search.py`.
+Download the file `gmail_search.py`. Note that this program **does write to files** so you may want to save this file to a new directory.
 
 ## Usage
 
