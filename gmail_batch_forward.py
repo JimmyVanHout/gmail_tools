@@ -14,16 +14,17 @@ SMTP_PORT = "465"
 LOWER_BOUND_RANDRANGE = 1
 UPPER_BOUND_PLUS_ONE_RANDRANGE = 5
 
-def send(email_address, password, receiving_email_address, messages):
+def send(email_address, password, receiving_email_addresses, messages):
     smtpssl = setup(email_address, password)
     print("Forwarding messages")
     count = 1
-    for message in messages:
-        smtpssl.sendmail(email_address, receiving_email_address, message)
-        print("Progress: {percentage:.2f}%".format(percentage=(count / len(messages) * 100)))
-        count += 1
-        delay = random.randrange(LOWER_BOUND_RANDRANGE, UPPER_BOUND_PLUS_ONE_RANDRANGE)
-        time.sleep(delay)
+    for receiving_email_address in receiving_email_addresses:
+        for message in messages:
+            smtpssl.sendmail(email_address, receiving_email_address, message)
+            print("Progress: {percentage:.2f}%".format(percentage=(count / len(messages) * len(receiving_email_addresses) * 100)))
+            count += 1
+            delay = random.randrange(LOWER_BOUND_RANDRANGE, UPPER_BOUND_PLUS_ONE_RANDRANGE)
+            time.sleep(delay)
     smtpssl.quit()
     print("Finished forwarding all mail")
 
@@ -72,7 +73,8 @@ if __name__ == "__main__":
         sys.exit(1)
     email_address = input("Originating email address: ")
     password = input("Password: ")
-    receiving_email_address = input("Receiving email address: ")
+    receiving_email_addresses_input = input("Receiving email addresses (comma-separated): ")
+    receiving_email_addresses = [rea.strip() for rea in receiving_email_addresses_input.split(",")]
     search_str = input("Query string: ")
     mailbox = input("Mailbox to search in (left blank, default is \"inbox\"): ")
     if mailbox == "":
@@ -82,5 +84,5 @@ if __name__ == "__main__":
     subjects = get_subjects(messages)
     messages = shorten_messages(messages)
     messages = add_subjects(messages, subjects)
-    send(email_address, password, receiving_email_address, messages)
+    send(email_address, password, receiving_email_addresses, messages)
     sys.exit(0)
