@@ -42,6 +42,8 @@ python3 gmail_batch_forward.py
 
 When running the program, the user will be asked to enter the originating email address, its password, the receiving email addresses, the query string, and the mailbox to search in (the default is `inbox`). Note that the query string must be formatted according to [RFC 3501 6.4.4](https://datatracker.ietf.org/doc/html/rfc3501#section-6.4.4).
 
+Also, although it worked for multiple email formats in limited testing, the batch send functionality was designed for a specific email format and therefore may not work for every email one may attempt to forward.
+
 #### Example
 
 ```
