@@ -34,6 +34,8 @@ python3 gmail_search.py "FROM email@email.com" --use-config-file --save-messages
 
 ### Usage
 
+Run:
+
 ```
 python3 gmail_batch_forward.py
 ```
