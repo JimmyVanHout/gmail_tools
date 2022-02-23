@@ -27,7 +27,7 @@ def get_dates_and_pdfs(messages):
 
 def write_pdfs(dates_and_pdfs, beginning_of_name):
     for date, pdf in dates_and_pdfs:
-        name = beginning_of_name + "-" + date.isoformat() + ".pdf"
+        name = beginning_of_name + "-" + date.isoformat().replace(":", "-") + ".pdf"
         with open(name, "wb") as file:
             file.write(pdf)
 
