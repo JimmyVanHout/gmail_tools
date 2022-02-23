@@ -34,13 +34,6 @@ def setup(email_address, password):
     smtpssl.login(email_address, password)
     return smtpssl
 
-def clean_messages(messages):
-    cleaned_messages = []
-    for message in messages:
-        message = message.replace("=\r\n", "")
-        cleaned_messages.append(message)
-    return cleaned_messages
-
 def get_subjects(messages):
     subjects = []
     for message in messages:
@@ -79,8 +72,7 @@ if __name__ == "__main__":
     mailbox = input("Mailbox to search in (left blank, default is \"inbox\"): ")
     if mailbox == "":
         mailbox = "inbox"
-    messages = gmail_search.search(email_address, password, search_str, mailbox, clean_messages=False)
-    messages = clean_messages(messages)
+    messages = gmail_search.search(email_address, password, search_str, mailbox)
     subjects = get_subjects(messages)
     messages = shorten_messages(messages)
     messages = add_subjects(messages, subjects)
