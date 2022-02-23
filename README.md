@@ -4,7 +4,7 @@ Search for, batch forward, and extract PDFs from Gmail messages.
 
 ## Installation
 
-The code is available on [GitHub](https://github.com/JimmyVanHout/gmail_tools). Note that `gmail_search.py` and `gmail_extract_pdfs` **do write to files** so ensure that they are contained in their own directory (such as the repository directory).
+The code is available on [GitHub](https://github.com/JimmyVanHout/gmail_tools). Note that `gmail_search.py` and `gmail_extract_pdfs.py` **do write to files** so ensure that they are contained in their own directory (such as the repository directory).
 
 ## Gmail Account Configuration
 
