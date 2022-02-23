@@ -1,10 +1,14 @@
 # Gmail Tools
 
-Search for and batch forward Gmail messages.
+Search for, batch forward, and extract PDFs from Gmail messages.
 
 ## Installation
 
-The code is available on [GitHub](https://github.com/JimmyVanHout/gmail_tools). Note that `gmail_search.py` **does write to files** so you may want to save this file to its own directory.
+The code is available on [GitHub](https://github.com/JimmyVanHout/gmail_tools). Note that `gmail_search.py` and `gmail_extract_pdfs` **do write to files** so ensure that files do not get overwritten.
+
+## Gmail Account Configuration
+
+In order for the programs to access your Gmail account, you must [disable two-factor authentication](https://support.google.com/accounts/answer/1064203?hl=en&co=GENIE.Platform%3DDesktop) and [allow "less secure app" access](https://support.google.com/accounts/answer/6010255?hl=en) in your [Google account security settings](https://myaccount.google.com/intro/security). It is recommended that you [enable two factor authentication](https://www.google.com/landing/2step/) and [disable "less secure app" access](https://support.google.com/accounts/answer/6010255?hl=en) after you have finished running the program, in order to maintain the security of your Google account. Alternatively, you can [set up another Gmail account](https://support.google.com/mail/answer/56256?hl=en) that does not contain sensitive information and run these programs to target that account if you would like.
 
 ## Search
 
@@ -22,7 +26,7 @@ The query string `<query_str>` must be formatted according to [RFC 3501 6.4.4](h
 
 `--save-messages` saves the retrieved messages to a directory `messages`. The default is to print the messages to standard output.
 
-When running the program, the user will be asked to enter their email address, password, mailbox (the default is `inbox`), and whether messages should be cleaned to remove `=\r\n` strings that Gmail adds.
+When running the program, the user will be asked to enter their email address, password, and mailbox (the default is `inbox`).
 
 #### Example
 
@@ -53,4 +57,24 @@ Password: mypassword
 Receiving email addresses (comma-separated): email1@email.org, email2@email.com
 Query string: FROM email3@email.net
 Mailbox to search in (left blank, default is "inbox"):
+```
+
+## Extract PDFs
+
+### Usage
+
+Run:
+
+```
+python3 gmail_extract_pdfs.py <query_str> <beginning_of_name> [--use-config-file]
+```
+
+`--use-config-file` attempts to load configuration data--email address, password, mailbox, and whether to clean message data (see below)--from `config.txt` so that it doesn't have to be entered each time. If it cannot find the file, the user will be asked for input and the file will be created with this configuration data. Note that the password is stored **unencrypted** in the configuration file.
+
+The program uses the query string `<query_str>` to search the target Gmail account and extracts a maximum of one PDF attachment from each email that matches the search query. The query string `<query_str>` must be formatted according to [RFC 3501 6.4.4](https://datatracker.ietf.org/doc/html/rfc3501#section-6.4.4). `<beginning_of_name>` specifies the beginning of the filename that each PDF will take on. The filename of each PDF will continue with a hyphen and the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html)-formatted timestamp of when the email was received. For example, if `<beginning_of_name>` is specified as `myfilename` and two emails with PDFs were found, received on November 12, 2021 at 10:22:36 and January 18, 2022 at 18:12:01, respectively, then the PDFs would be saved as `myfilename-2021-11-12T10-22-36` and `myfilename-2022-01-18T18-12-01`. The PDFs are saved in a directory `pdfs`.
+
+### Example
+
+```
+python3 gmail_extract_pdfs.py "FROM email@email.com" mypdf --use-config-file
 ```
