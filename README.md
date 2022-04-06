@@ -8,7 +8,7 @@ The code is available on [GitHub](https://github.com/JimmyVanHout/gmail_tools). 
 
 ## Gmail Account Configuration
 
-In order for the programs to access your Gmail account, you must [disable two-factor authentication](https://support.google.com/accounts/answer/1064203?hl=en&co=GENIE.Platform%3DDesktop) and [allow "less secure app" access](https://support.google.com/accounts/answer/6010255?hl=en) in your [Google account security settings](https://myaccount.google.com/intro/security). It is recommended that you [enable two factor authentication](https://www.google.com/landing/2step/) and [disable "less secure app" access](https://support.google.com/accounts/answer/6010255?hl=en) after you have finished running the program, in order to maintain the security of your Google account. Alternatively, you can [set up another Gmail account](https://support.google.com/mail/answer/56256?hl=en) that does not contain sensitive information and run these programs to target that account if you would like.
+In order for the programs to access your Gmail account, you must create an [application-specific password](https://support.google.com/mail/answer/185833?hl=en-GB) and use this password when running these programs.
 
 ## Search
 
