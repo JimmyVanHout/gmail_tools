@@ -1,5 +1,6 @@
 import datetime
 import email
+import getpass
 import gmail_search
 import os
 import re
@@ -33,7 +34,7 @@ def write_pdfs(dates_and_pdfs, beginning_of_name):
 
 def get_config_data_from_input():
     email_address = input("Email address: ")
-    password = input("Password: ")
+    password = getpass.getpass("Password: ")
     mailbox = input("Mailbox (default is \"inbox\"): ")
     if mailbox == "":
         mailbox = "inbox"

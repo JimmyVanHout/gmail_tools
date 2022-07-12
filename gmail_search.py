@@ -1,3 +1,4 @@
+import getpass
 import imaplib
 import os
 import ssl
@@ -57,7 +58,7 @@ def print_correct_usage():
 
 def get_config_data_from_input():
     email_address = input("Email address: ")
-    password = input("Password: ")
+    password = getpass.getpass("Password: ")
     mailbox = input("Mailbox (default is \"inbox\"): ")
     if mailbox == "":
         mailbox = "inbox"

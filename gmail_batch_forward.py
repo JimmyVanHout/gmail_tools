@@ -1,3 +1,4 @@
+import getpass
 import gmail_search
 import imaplib
 import random
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         print_correct_usage()
         sys.exit(1)
     email_address = input("Originating email address: ")
-    password = input("Password: ")
+    password = getpass.getpass("Password: ")
     receiving_email_addresses_input = input("Receiving email addresses (comma-separated): ")
     receiving_email_addresses = [rea.strip() for rea in receiving_email_addresses_input.split(",")]
     search_str = input("Query string: ")
